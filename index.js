@@ -25,6 +25,7 @@ let tache ={
 
 const insertline = ()=> {
     let tab = JSON.parse(localStorage.getItem('cles'));
+    tbody.innerHTML=''
     tab.forEach(element => {
         tbody.innerHTML += `<tr>
                           <th scope="row">${element.index}</th>
