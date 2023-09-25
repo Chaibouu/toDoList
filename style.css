@@ -10,7 +10,8 @@
 .titre{
     background: #609DA0;
     width:100%;
-    margin:0
+    margin:0;
+    color: #fff;
 }
 
 .inputBox{
@@ -93,12 +94,23 @@ input[type=date]:invalid::-webkit-datetime-edit {
     margin:10px;
 }
 .containertache{
-    height: 100%;
     border-left: 1px solid #609DA0;
 }
 .containergraphique{
-    height: 300px;
+    height: 200px;
     width: 100%;
     border-top: 1px solid #609DA0;
-    
+    background-color: red;
+
+}
+.titretache{
+    color: #609DA0;
+    margin: 20px auto;
+}
+.containerdescription{
+    width: 100%;
+    min-height:100px;
+    border: 1px solid #609DA0;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
