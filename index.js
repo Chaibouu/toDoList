@@ -23,8 +23,23 @@ let tache ={
 }
 
 
-   
-
+const insertline = ()=> {
+    let tab = JSON.parse(localStorage.getItem('cles'));
+    tab.forEach(element => {
+        tbody.innerHTML += `<tr>
+                          <th scope="row">${element.index}</th>
+                          <td>${element.date}</td>
+                          <td>${element.titre}</td>
+                          <td>${element.categorie}</td>
+                          <td>
+                            <span><i class="bi bi-eye"></i></span>
+                            <span><i class="bi bi-pencil-square"></i></span>
+                            <span><i class="bi bi-trash3"></i></span>
+                          </td>
+                       </tr>`
+    });
+}
+insertline();
  
  btnajouter.addEventListener('click',()=>{
     tache ={
@@ -45,19 +60,8 @@ let tache ={
     inputstatut.value        = "";
     console.log(tache);
 
-    let tab = JSON.parse(localStorage.getItem('cles'));
-    tab.forEach(element => {
-        tbody.innerHTML = `<tr>
-                          <th scope="row">${element.date}</th>
-                          <td>${element.titre}</td>
-                          <td>${element.categorie}</td>
-                          <td>
-                            <span><i class="bi bi-eye"></i></span>
-                            <span><i class="bi bi-pencil-square"></i></span>
-                            <span><i class="bi bi-trash3"></i></span>
-                          </td>
-                       </tr>`
-    });
+    insertline();
+
  })
 
 
