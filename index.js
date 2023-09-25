@@ -52,7 +52,9 @@ let tache ={
                           <td>${element.titre}</td>
                           <td>${element.categorie}</td>
                           <td>
-                            <span></span>
+                            <span><i class="bi bi-eye"></i></span>
+                            <span><i class="bi bi-pencil-square"></i></span>
+                            <span><i class="bi bi-trash3"></i></span>
                           </td>
                        </tr>`
     });
