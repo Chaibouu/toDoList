@@ -5,20 +5,27 @@
 }
 .boite{
     border: 1px solid #609DA0;
-    border-radius: 10px
+    border-radius: 10px;
+    margin: 20px;
+}
+.sidebar{
+    
 }
 .titre{
     background: #609DA0;
     width:100%;
     margin:0;
     color: #fff;
+    border-top-left-radius: 7px;
+    text-align: center;
+    padding: 2px;
 }
 
 .inputBox{
     position:relative;
 }
 .inputBox input{
-    width:100%;
+    width:90%;
     border: 1px solid #609DA0;
     border-radius: 5px;
     outline: none;
@@ -27,7 +34,7 @@
     transition : 0.5s;
 }
 .inputBox textarea{
-    width:100%;
+    width:90%;
     border: 1px solid #609DA0;
     border-radius: 5px;
     outline: none;
@@ -100,7 +107,6 @@ input[type=date]:invalid::-webkit-datetime-edit {
     height: 200px;
     width: 100%;
     border-top: 1px solid #609DA0;
-    background-color: red;
 
 }
 .titretache{
