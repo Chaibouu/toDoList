@@ -15,7 +15,7 @@
             <div class="col-12 col-md-4 col-lg-4 p-0 sidebar">
                 <div class="titre"><h3>Ajouter une tâche</h3></div>
                 <div class="inputBox">
-                    <input list="list" required="required" class="" title="input"/>
+                    <input list="list" required="required" class="" title="input" id="inputcategorie"/>
                     <span>Catégorie</span>
                     <datalist id="list">
                         <option value="Academique"></option>
@@ -24,19 +24,19 @@
                     </datalist>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required="required" class="" title="input"/>
+                    <input type="text" required="required" class="" title="input" id="inputtitre"/>
                     <span>Titre</span>
                 </div>
                 <div class="inputBox">
-                    <input type="date" required="required" class="" title="input"/>
+                    <input type="date" required="required" class="" title="input" id="inputdate"/>
                     <span class="pp">Date</span>
                 </div>
                 <div class="inputBox">
-                    <textarea type="text" required="required" class="" title="input"></textarea>
+                    <textarea type="text" required="required" class="" title="input" id="inputdescription"></textarea>
                     <span>Description</span>
                 </div>
                 <div class="inputBox">
-                    <input list="listee" required="required" class="" title="input"/>
+                    <input list="listee" required="required" class="" title="input" id="inputstatut"/>
                     <span>Statut</span>
                     <datalist id="listee">
                         <option value="Nouveau"></option>
@@ -53,6 +53,28 @@
                 <div class="w-100">
                     <div class="container-fluid text-center titretache">
                         <h4>Liste de tâches</h4>
+                    </div>
+                    <div class="container-fluid">
+                        <table class="table table-striped">
+                            <thead>
+                              <tr class="tetetableau">
+                                <th scope="col">#</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Titre</th>
+                                <th scope="col">Catégorie</th>
+                                <th scope="col">Opérations</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
                     </div>
                     
                 </div>

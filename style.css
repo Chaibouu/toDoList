@@ -9,7 +9,7 @@
     margin: 20px;
 }
 .sidebar{
-    
+
 }
 .titre{
     background: #609DA0;
@@ -120,3 +120,18 @@ input[type=date]:invalid::-webkit-datetime-edit {
     border-radius: 10px;
     margin-bottom: 20px;
 }
+.tetetableau{
+    color: white;
+    background: #609DA0;
+}
+
+
+/* .table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: white; 
+ } */
+
+ .table-striped > tbody > tr:nth-child(2n) > td, 
+ .table-striped > tbody > tr:nth-child(2n) > th {
+    background-color: #60b9bd8d; 
+ }
