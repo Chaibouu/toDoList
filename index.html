@@ -10,13 +10,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container boite">
         <div class="row">
-            <div class="col">
-                <div class="container-fluid"><h1>Ajouter une tâche</h1></div>
+            <div class="col-12 col-md-4 col-lg-4">
+                <div class="titre"><h1>Ajouter une tâche</h1></div>
                 <div class="inputBox">
-                    <input type="text" required="required" class="" title="input"/>
+                    <input list="list" required="required" class="" title="input"/>
                     <span>Catégorie</span>
+                    <datalist id="list">
+                        <option value="Academique"></option>
+                        <option value="Extra-academique"></option>
+                        <option value="Distraction"></option>
+                    </datalist>
                 </div>
                 <div class="inputBox">
                     <input type="text" required="required" class="" title="input"/>
@@ -27,15 +32,29 @@
                     <span class="pp">Date</span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required="required" class="" title="input" />
+                    <textarea type="text" required="required" class="" title="input"></textarea>
                     <span>Description</span>
                 </div>
                 <div class="inputBox">
-                    <input type="text" required="required" class="" title="input"/>
+                    <input list="listee" required="required" class="" title="input"/>
                     <span>Statut</span>
+                    <datalist id="listee">
+                        <option value="Nouveau"></option>
+                        <option value="En cours"></option>
+                        <option value="Terminé"></option>
+                    </datalist>
+                </div>
+                <div class="container-fluid text-center"><button class="btnajouter">Ajouter</button></div>
+                <div class=" containergraphique">
+
                 </div>
             </div>
-            <div class="col"></div>
+            <div class="col-12 col-md-8 col-lg-8 containertache">
+                <div class="container-fluid">
+                    <h2>Liste de tâches</h2>
+                </div>
+
+            </div>
         </div>
     </div>
 

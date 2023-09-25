@@ -1,13 +1,32 @@
 
 
-
-
+*{
+    
+}
+.boite{
+    border: 1px solid #609DA0;
+    border-radius: 10px
+}
+.titre{
+    background: #609DA0;
+    width:100%;
+    margin:0
+}
 
 .inputBox{
     position:relative;
 }
 .inputBox input{
-    width:90%;
+    width:100%;
+    border: 1px solid #609DA0;
+    border-radius: 5px;
+    outline: none;
+    padding: 8px;
+    margin:10px;
+    transition : 0.5s;
+}
+.inputBox textarea{
+    width:100%;
     border: 1px solid #609DA0;
     border-radius: 5px;
     outline: none;
@@ -35,6 +54,16 @@
     border-radius: 5px;
 
 }
+.inputBox textarea:valid ~ span,
+.inputBox textarea:focus ~ span{
+    color:white;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 1em;
+    padding:0 5px;
+    background:#609DA0;
+    border-radius: 5px;
+
+}
 .inputBox input:valid,
 .inputBox input:focus{
     border:1px solid #609DA0;
@@ -53,4 +82,23 @@
 }
 input[type=date]:invalid::-webkit-datetime-edit {
     color: #999;
+}
+.btnajouter{
+    color:white;
+    background: #609DA0;
+    border: 1px solid rgba(128, 128, 128, 0.409);
+    border-radius: 5px;
+    padding: 5px 10px;
+    width:75%;
+    margin:10px;
+}
+.containertache{
+    height: 100%;
+    border-left: 1px solid #609DA0;
+}
+.containergraphique{
+    height: 300px;
+    width: 100%;
+    border-top: 1px solid #609DA0;
+    
 }
