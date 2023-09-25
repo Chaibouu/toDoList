@@ -4,12 +4,13 @@ let inputdate = document.querySelector('#inputdate');
 let inputdescription = document.querySelector('#inputdescription');
 let inputstatut = document.querySelector('#inputstatut');
 let btnajouter = document.querySelector('.btnajouter');
+let tbody = document.querySelector('#tbody');
 
 // initialisation du tableau
 if(!localStorage.getItem('cles')){
     localStorage.setItem('cles',JSON.stringify([]))
 }
-let tab = JSON.parse(localStorage.getItem('cles'));
+let tach = JSON.parse(localStorage.getItem('cles'));
 
 
 let tache ={
@@ -34,11 +35,28 @@ let tache ={
         description: inputdescription.value,
         statut: inputstatut.value,
     }
-    inputdate.textContent        = "";
-    inputtitre.textContent         = "";
-    inputcategorie.textContent     = "";
-    inputdescription.textContent   = "";
-    inputstatut.textContent        = "";
+    tach.push(tache);
+    updateTach()
+    
+    inputdate.value        = "";
+    inputtitre.value         = "";
+    inputcategorie.value     = "";
+    inputdescription.value   = "";
+    inputstatut.value        = "";
     console.log(tache);
 
+
+    tbody.innerHTML = `<tr>
+                          <th scope="row">1</th>
+                          <td>Mark</td>
+                          <td>Otto</td>
+                          <td>@mdo</td>
+                       </tr>`
  })
+
+
+
+ // function mettre a jour localstorage
+function updateTach() {
+    localStorage.setItem('cles',JSON.stringify(tach))
+}
