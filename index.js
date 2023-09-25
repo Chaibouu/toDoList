@@ -45,13 +45,17 @@ let tache ={
     inputstatut.value        = "";
     console.log(tache);
 
-
-    tbody.innerHTML = `<tr>
-                          <th scope="row">1</th>
-                          <td>Mark</td>
-                          <td>Otto</td>
-                          <td>@mdo</td>
+    let tab = JSON.parse(localStorage.getItem('cles'));
+    tab.forEach(element => {
+        tbody.innerHTML = `<tr>
+                          <th scope="row">${element.date}</th>
+                          <td>${element.titre}</td>
+                          <td>${element.categorie}</td>
+                          <td>
+                            <span></span>
+                          </td>
                        </tr>`
+    });
  })
 
 
