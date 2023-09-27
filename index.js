@@ -63,8 +63,37 @@ insertline();
 
     insertline();
 
+
  })
 
+ // =================chartjs=======================
+
+ let terminer = 5;
+ let nouveau = 2;
+ let encours = 3;
+const ctx = document.getElementById('myChart');
+let chartj = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['terminer', 'moyen', 'debut'],
+      datasets: [{
+        data: [terminer, nouveau, encours],
+        backgroundColor:['gray', 'blue', 'green'],
+        borderWidth: 1
+      }]
+    },
+    
+  });
+// fonction pour générer des couleur
+const colorr = () => {
+    let col = '0123456789ABCDEF';
+    let r = '#';
+    for (let i = 0; i < 6; i++) {
+        r +=  col[Math.floor(Math.random()*16)] 
+    }
+    return r;
+}
+// ================================================
 
 
  // function mettre a jour localstorage
