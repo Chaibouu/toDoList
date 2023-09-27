@@ -50,7 +50,6 @@ const insertline = ()=> {
     let affichedescrip = document.querySelectorAll('.affichedescrip');
     affichedescrip.forEach(element => {
        element.addEventListener('click',()=>{
-        console.log(element.querySelector('th').textContent);
         let ind =element.querySelector('th').textContent;
         let desc = tach.find((id)=> id.index==ind)
         containerdescription.textContent = desc.description
