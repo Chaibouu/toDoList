@@ -104,7 +104,9 @@ input[type=date]:invalid::-webkit-datetime-edit {
     border-left: 1px solid #609DA0;
 }
 .containergraphique{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     border-top: 1px solid #609DA0;
 

@@ -6,6 +6,12 @@ let inputstatut = document.querySelector('#inputstatut');
 let btnajouter = document.querySelector('.btnajouter');
 let tbody = document.querySelector('#tbody');
 
+
+let terminer = 0;
+let nouveau = 0;
+let encours = 0;
+
+
 // initialisation du tableau
 if(!localStorage.getItem('cles')){
     localStorage.setItem('cles',JSON.stringify([]))
@@ -24,13 +30,13 @@ let tache ={
 
 
 const insertline = ()=> {
-    let tab = JSON.parse(localStorage.getItem('cles'));
+    let tach = JSON.parse(localStorage.getItem('cles'));
     tbody.innerHTML=''
-    tab.forEach(element => {
-        tbody.innerHTML += `<tr>
+    tach.forEach(element => {
+        tbody.innerHTML += `<tr class="affichedescrip">
                           <th scope="row">${element.index}</th>
                           <td>${element.date}</td>
-                          <td>${element.titre}</td>
+                          <td >${element.titre}</td>
                           <td>${element.categorie}</td>
                           <td>
                             <span class= "views"><i class="bi bi-eye"></i></span>
@@ -39,9 +45,36 @@ const insertline = ()=> {
                           </td>
                        </tr>`
     });
+    // afficher les description de chaque tâche
+    let affichedescrip = document.querySelectorAll('.affichedescrip');
+    affichedescrip.forEach(element => {
+       element.addEventListener('click',()=>{
+        element.style.backgroundColor='red'
+       })
+    });
+    // btn supprimer
+    let supprimer = document.querySelectorAll('.sup');
+    supprimer.forEach(button => {
+        button.addEventListener('click',(e)=>{
+            console.log(e.target.parentElement.parentElement.parentElement.querySelector('th').textContent);
+        })
+    });
 }
 insertline();
  
+tach.forEach(element => {
+    if (element.statut=="Terminé") {
+        terminer +=1 ;
+    }
+    if (element.statut=="Nouveau") {
+        nouveau +=1;
+    }
+    if (element.statut=="En cours") {
+        encours +=1;
+    }
+   
+});
+
  btnajouter.addEventListener('click',()=>{
     tache ={
         index: tach.length? tach.length + 1: 1,
@@ -59,23 +92,22 @@ insertline();
     inputcategorie.value     = "";
     inputdescription.value   = "";
     inputstatut.value        = "";
-    console.log(tache);
-
     insertline();
 
-
+    
+    location.reload()
  })
 
  // =================chartjs=======================
 
- let terminer = 5;
- let nouveau = 2;
- let encours = 3;
+
+
+
 const ctx = document.getElementById('myChart');
 let chartj = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['terminer', 'moyen', 'debut'],
+        labels: ['terminer', 'nouveau', 'encours'],
       datasets: [{
         data: [terminer, nouveau, encours],
         backgroundColor:['gray', 'blue', 'green'],
