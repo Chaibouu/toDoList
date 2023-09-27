@@ -5,6 +5,7 @@ let inputdescription = document.querySelector('#inputdescription');
 let inputstatut = document.querySelector('#inputstatut');
 let btnajouter = document.querySelector('.btnajouter');
 let tbody = document.querySelector('#tbody');
+let containerdescription = document.querySelector('.containerdescription');
 
 
 let terminer = 0;
@@ -49,7 +50,10 @@ const insertline = ()=> {
     let affichedescrip = document.querySelectorAll('.affichedescrip');
     affichedescrip.forEach(element => {
        element.addEventListener('click',()=>{
-        element.style.backgroundColor='red'
+        console.log(element.querySelector('th').textContent);
+        let ind =element.querySelector('th').textContent;
+        let desc = tach.find((id)=> id.index==ind)
+        containerdescription.textContent = desc.description
        })
     });
     // btn supprimer
