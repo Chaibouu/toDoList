@@ -33,9 +33,9 @@ const insertline = ()=> {
                           <td>${element.titre}</td>
                           <td>${element.categorie}</td>
                           <td>
-                            <span><i class="bi bi-eye"></i></span>
-                            <span><i class="bi bi-pencil-square"></i></span>
-                            <span><i class="bi bi-trash3"></i></span>
+                            <span class= "views"><i class="bi bi-eye"></i></span>
+                            <span class= "edit"><i class="bi bi-pencil-square"></i></span>
+                            <span class= "sup"><i class="bi bi-trash3"></i></span>
                           </td>
                        </tr>`
     });
@@ -44,7 +44,7 @@ insertline();
  
  btnajouter.addEventListener('click',()=>{
     tache ={
-        index: 0,
+        index: tach.length? tach.length + 1: 1,
         date: inputdate.value,
         titre: inputtitre.value,
         categorie: inputcategorie.value,

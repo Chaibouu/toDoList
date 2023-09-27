@@ -135,3 +135,14 @@ input[type=date]:invalid::-webkit-datetime-edit {
  .table-striped > tbody > tr:nth-child(2n) > th {
     background-color: #60b9bd8d; 
  }
+.views, .sup, .edit{
+    background-color: red;
+    padding: 3px;
+    border-radius: 5px;
+}
+.views{
+    background-color: rgb(0, 195, 255);
+}
+.edit{
+    background-color: rgb(0, 255, 166);
+}
