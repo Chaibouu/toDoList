@@ -10,7 +10,7 @@ let notification = document.querySelector('.notification');
 let terminer = 0
 let nouveau = 0
 let encours = 0
-
+let indd= 0;
 
 
 
@@ -77,7 +77,7 @@ const insertline = ()=> {
     editer.forEach(button => {
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
-            let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+             indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             console.log(indd)
             let tab = tac.find((idd)=> idd.index == indd )
             console.log(tab)
@@ -113,6 +113,42 @@ function affichgraph() {
 
 
  btnajouter.addEventListener('click',()=>{
+    let tac = JSON.parse(localStorage.getItem('cles'));
+    const findEl = tac.filter((el) => el.index === parseInt(indd))
+    console.log(findEl)
+    if (findEl.length > 0) {
+        
+        tache ={
+            index: indd,
+            date: inputdate.value,
+            titre: inputtitre.value,
+            categorie: inputcategorie.value,
+            description: inputdescription.value,
+            statut: inputstatut.value,
+        }
+        tac.splice(tac.indexOf(findEl),1,tache)
+        localStorage.setItem('cles',JSON.stringify(tac))
+        if(inputstatut.value !==''){
+        affichgraph()
+
+        inputdate.value          = "";
+        inputtitre.value         = "";
+        inputcategorie.value     = "";
+        inputdescription.value   = "";
+        inputstatut.value        = "";
+    
+        insertline();
+    
+        notification.style.display = 'block'
+            setTimeout(() => {
+                notification.style.display = 'none'
+              }, 3000);
+        
+        chart()
+    }
+          return
+    }
+    
     tache ={
         index: tach.length? tach.length + 1: 1,
         date: inputdate.value,
@@ -121,14 +157,7 @@ function affichgraph() {
         description: inputdescription.value,
         statut: inputstatut.value,
     }
-    let tac = JSON.parse(localStorage.getItem('cles'));
-    tac.forEach(element => {
-        if (element.index == tache.index) {
-          alert('doublon')
-        }else{
-          alert ('nouveau')
-        }
-    });
+   
     tach.push(tache);
     updateTach()
     if(inputstatut.value !==''){
