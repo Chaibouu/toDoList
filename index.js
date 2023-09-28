@@ -63,7 +63,6 @@ const insertline = ()=> {
     supprimer.forEach(button => {
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
-            console.log(e.target.parentElement.parentElement.parentElement.querySelector('th').textContent);
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             let tab = tac.filter((idd)=> idd.index != indd )
             tac = tab;
@@ -71,6 +70,27 @@ const insertline = ()=> {
             insertline();
             affichgraph()
             chart()
+        })
+    });
+    // btn editer
+    let editer = document.querySelectorAll('.edit');
+    editer.forEach(button => {
+        let tac = JSON.parse(localStorage.getItem('cles'));
+        button.addEventListener('click',(e)=>{
+            let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+            console.log(indd)
+            let tab = tac.find((idd)=> idd.index == indd )
+            console.log(tab)
+            inputdate.value        = tab.date;
+            inputtitre.value         = tab.titre;
+            inputcategorie.value     = tab.categorie;
+            inputdescription.value   = tab.description;
+            inputstatut.value        = tab.statut;
+
+            // localStorage.setItem('cles',JSON.stringify(tac[ind]));
+            // insertline();
+            // affichgraph()
+            // chart()
         })
     });
 }
@@ -101,7 +121,14 @@ function affichgraph() {
         description: inputdescription.value,
         statut: inputstatut.value,
     }
-
+    let tac = JSON.parse(localStorage.getItem('cles'));
+    tac.forEach(element => {
+        if (element.index == tache.index) {
+         alert('doublon')
+        }else{
+          alert ('nouveau')
+        }
+    });
     tach.push(tache);
     updateTach()
     if(inputstatut.value !==''){
@@ -109,7 +136,7 @@ function affichgraph() {
     }
 
   
-    inputdate.value        = "";
+    inputdate.value          = "";
     inputtitre.value         = "";
     inputcategorie.value     = "";
     inputdescription.value   = "";
