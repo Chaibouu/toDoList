@@ -73,18 +73,22 @@ const insertline = ()=> {
 
 insertline();
 
-tach.forEach(element => {
-    if (element.statut=="Terminé") {
-        terminer +=1 ;
-    }
-    if (element.statut=="Nouveau") {
-        nouveau +=1;
-    }
-    if (element.statut=="En cours") {
-        encours +=1;
-    }
-   
-});
+function affichgraph() {
+    tach.forEach(element => {
+        if (element.statut=="Terminé") {
+            terminer +=1 ;
+        }
+        if (element.statut=="Nouveau") {
+            nouveau +=1;
+        }
+        if (element.statut=="En cours") {
+            encours +=1;
+        }
+       
+    });
+    
+}
+affichgraph()
 
  btnajouter.addEventListener('click',()=>{
     tache ={
@@ -109,17 +113,15 @@ tach.forEach(element => {
         setTimeout(() => {
             notification.style.display = 'none'
           }, 3000);
-
-          chartj.update();
+    chart() 
+    affichgraph()
  })
 
  // =================chartjs=======================
 
-
-
-
-const ctx = document.getElementById('myChart');
-let chartj = new Chart(ctx, {
+function chart() {
+    const ctx = document.getElementById('myChart');
+new Chart(ctx, {
     type: 'pie',
     data: {
         labels: ['terminer', 'nouveau', 'encours'],
@@ -131,15 +133,8 @@ let chartj = new Chart(ctx, {
     },
     
   });
-// fonction pour générer des couleur
-const colorr = () => {
-    let col = '0123456789ABCDEF';
-    let r = '#';
-    for (let i = 0; i < 6; i++) {
-        r +=  col[Math.floor(Math.random()*16)] 
-    }
-    return r;
 }
+chart()
 // ================================================
 
 
