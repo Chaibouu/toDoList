@@ -7,11 +7,11 @@ let btnajouter = document.querySelector('.btnajouter');
 let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
 let notification = document.querySelector('.notification');
+let terminer = 0
+let nouveau = 0
+let encours = 0
 
 
-let terminer = 0;
-let nouveau = 0;
-let encours = 0;
 
 
 // initialisation du tableau
@@ -74,21 +74,21 @@ const insertline = ()=> {
 insertline();
 
 function affichgraph() {
+    
     tach.forEach(element => {
         if (element.statut=="Terminé") {
-            terminer +=1 ;
+            terminer++ ;
+        }else  if (element.statut=="Nouveau") {
+            nouveau++;
+        } else  if (element.statut=="En cours") {
+            encours ++;
         }
-        if (element.statut=="Nouveau") {
-            nouveau +=1;
-        }
-        if (element.statut=="En cours") {
-            encours +=1;
-        }
-       
     });
-    
+    console.log(terminer)
+    console.log(nouveau)
+    console.log(encours)
 }
-affichgraph()
+
 
  btnajouter.addEventListener('click',()=>{
     tache ={
@@ -99,9 +99,15 @@ affichgraph()
         description: inputdescription.value,
         statut: inputstatut.value,
     }
+    console.log(tache.statut)
     tach.push(tache);
-    updateTach()
-    
+   
+    if(inputstatut.value !==''){
+           
+        affichgraph()
+    }
+
+  
     inputdate.value        = "";
     inputtitre.value         = "";
     inputcategorie.value     = "";
@@ -113,15 +119,22 @@ affichgraph()
         setTimeout(() => {
             notification.style.display = 'none'
           }, 3000);
-    chart() 
-    affichgraph()
+          updateTach()
+          chart()
+        
+    
+
  })
 
  // =================chartjs=======================
-
+ let myChart;
 function chart() {
+
     const ctx = document.getElementById('myChart');
-new Chart(ctx, {
+if(myChart){
+    myChart.destroy()
+}
+ myChart = new Chart(ctx, {
     type: 'pie',
     data: {
         labels: ['terminer', 'nouveau', 'encours'],
@@ -133,8 +146,9 @@ new Chart(ctx, {
     },
     
   });
+  
 }
-chart()
+
 // ================================================
 
 
