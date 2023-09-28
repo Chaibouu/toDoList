@@ -6,6 +6,7 @@ let inputstatut = document.querySelector('#inputstatut');
 let btnajouter = document.querySelector('.btnajouter');
 let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
+let notification = document.querySelector('.notification');
 
 
 let terminer = 0;
@@ -104,8 +105,12 @@ tach.forEach(element => {
     inputstatut.value        = "";
     insertline();
 
-    
-    location.reload()
+    notification.style.display = 'block'
+        setTimeout(() => {
+            notification.style.display = 'none'
+          }, 3000);
+
+          chartj.update();
  })
 
  // =================chartjs=======================

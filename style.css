@@ -127,6 +127,30 @@ input[type=date]:invalid::-webkit-datetime-edit {
     color: white;
     background: #609DA0;
 }
+.containertacheee{
+    position: relative;
+}
+.notification{
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    right: -40px;
+    text-align: center;
+    border: 1px solid #609DA0;
+    border-radius: 10px;
+    z-index: 10;
+    display: none;
+}
+.notification>h3{
+    background-color: #609DA0;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+.notification>p{
+    padding: 0 10px;
+}
+
 
 
 /* .table-striped>tbody>tr:nth-child(odd)>td, 
