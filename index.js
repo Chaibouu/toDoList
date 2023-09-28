@@ -124,7 +124,7 @@ function affichgraph() {
     let tac = JSON.parse(localStorage.getItem('cles'));
     tac.forEach(element => {
         if (element.index == tache.index) {
-         alert('doublon')
+          alert('doublon')
         }else{
           alert ('nouveau')
         }
