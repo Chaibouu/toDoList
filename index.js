@@ -51,20 +51,27 @@ const insertline = ()=> {
     affichedescrip.forEach(element => {
        element.addEventListener('click',()=>{
         let ind =element.querySelector('th').textContent;
-        let desc = tach.find((id)=> id.index==ind)
-        containerdescription.textContent = desc.description
+        let desc = tach.find((id)=> id.index==ind);
+        containerdescription.textContent = desc.description;
        })
     });
     // btn supprimer
     let supprimer = document.querySelectorAll('.sup');
     supprimer.forEach(button => {
+        let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
             console.log(e.target.parentElement.parentElement.parentElement.querySelector('th').textContent);
+            let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+            let tab = tac.filter((idd)=> idd.index != indd )
+            tac = tab;
+            localStorage.setItem('cles',JSON.stringify(tac));
+            insertline();
         })
     });
 }
+
 insertline();
- 
+
 tach.forEach(element => {
     if (element.statut=="Terminé") {
         terminer +=1 ;
