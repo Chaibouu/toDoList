@@ -47,6 +47,7 @@ const insertline = ()=> {
                           </td>
                        </tr>`
     });
+
     // afficher les description de chaque tâche
     let affichedescrip = document.querySelectorAll('.affichedescrip');
     affichedescrip.forEach(element => {
@@ -56,6 +57,7 @@ const insertline = ()=> {
         containerdescription.textContent = desc.description;
        })
     });
+
     // btn supprimer
     let supprimer = document.querySelectorAll('.sup');
     supprimer.forEach(button => {
@@ -67,26 +69,26 @@ const insertline = ()=> {
             tac = tab;
             localStorage.setItem('cles',JSON.stringify(tac));
             insertline();
+            affichgraph()
+            chart()
         })
     });
 }
-
 insertline();
 
 function affichgraph() {
-    
+    terminer = 0
+    nouveau = 0
+    encours = 0
     tach.forEach(element => {
-        if (element.statut=="Terminé") {
+        if (element.statut==="Terminé") {
             terminer++ ;
-        }else  if (element.statut=="Nouveau") {
+        }else  if (element.statut==="Nouveau") {
             nouveau++;
-        } else  if (element.statut=="En cours") {
+        } else  if (element.statut==="En cours") {
             encours ++;
         }
     });
-    console.log(terminer)
-    console.log(nouveau)
-    console.log(encours)
 }
 
 
@@ -99,11 +101,10 @@ function affichgraph() {
         description: inputdescription.value,
         statut: inputstatut.value,
     }
-    console.log(tache.statut)
+
     tach.push(tache);
-   
+    updateTach()
     if(inputstatut.value !==''){
-           
         affichgraph()
     }
 
@@ -113,24 +114,23 @@ function affichgraph() {
     inputcategorie.value     = "";
     inputdescription.value   = "";
     inputstatut.value        = "";
+
     insertline();
 
     notification.style.display = 'block'
         setTimeout(() => {
             notification.style.display = 'none'
           }, 3000);
-          updateTach()
-          chart()
-        
     
-
+    chart()
  })
 
+
  // =================chartjs=======================
+ affichgraph()
  let myChart;
 function chart() {
-
-    const ctx = document.getElementById('myChart');
+const ctx = document.getElementById('myChart');
 if(myChart){
     myChart.destroy()
 }
@@ -148,7 +148,7 @@ if(myChart){
   });
   
 }
-
+chart()
 // ================================================
 
 
