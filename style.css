@@ -175,12 +175,14 @@ input[type=date]:invalid::-webkit-datetime-edit {
     background-color: rgb(0, 255, 166);
 }
 .infotache{
-    min-width:500px;
+    visibility: hidden;
+    min-width:400px;
     position:absolute;
     text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(128, 128, 128, 0.245);
     top: 50%;
+    left: calc(100% - 85%);
     z-index:10;
     background:white;
 }
@@ -194,4 +196,16 @@ input[type=date]:invalid::-webkit-datetime-edit {
 }
 .inf{
     color:#609DA0;
+}
+
+.sortie{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100vw;
+    height: 100vh;
+    z-index: 9;
+    display: none;
+    cursor: default;
+    background-color: #ffffff92;
 }

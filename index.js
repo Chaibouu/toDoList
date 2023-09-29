@@ -67,6 +67,7 @@ const insertline = ()=> {
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             console.log(indd);
             let tab = tac.find((idd)=> idd.index == indd )
+            infotache.style.visibility = 'visible';
             infotache.innerHTML = `<h3 class="w-100"> informations tâche</h3>
                                    <div class="d-flex mx-4 my-2">
                                         <div class="d-flex flex-column align-items-start me-2">
@@ -83,8 +84,9 @@ const insertline = ()=> {
                                              <span>: ${tab.description} </span>
                                              <span>: ${tab.statut} </span>
                                         </div>
-                                   </div>
-                                   <a href="" class="sortie"></a>`
+                                   </div>`
+            let sortie = document.querySelector('.sortie');
+            sortie.style.display = 'block'
 
         })
     });
