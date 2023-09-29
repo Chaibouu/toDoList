@@ -110,6 +110,8 @@ const insertline = ()=> {
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
              indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+             let asup = e.target.parentElement.parentElement.parentElement;
+             asup.remove();
             console.log(indd)
             let tab = tac.find((idd)=> idd.index == indd )
             console.log(tab)
