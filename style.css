@@ -174,3 +174,16 @@ input[type=date]:invalid::-webkit-datetime-edit {
 .edit{
     background-color: rgb(0, 255, 166);
 }
+.infotache{
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.245);
+}
+.infotache>h3{
+    text-align: center;
+    background-color: #609DA0;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    color: #fff;
+    padding: 35px auto;
+}

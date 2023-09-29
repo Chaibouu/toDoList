@@ -7,6 +7,7 @@ let btnajouter = document.querySelector('.btnajouter');
 let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
 let notification = document.querySelector('.notification');
+let infotache = document.querySelector('.infotache');
 let terminer = 0
 let nouveau = 0
 let encours = 0
@@ -58,6 +59,23 @@ const insertline = ()=> {
        })
     });
 
+    // btn views
+    let views = document.querySelectorAll('.views');
+    views.forEach(button => {
+        let tac = JSON.parse(localStorage.getItem('cles'));
+        button.addEventListener('click',(e)=>{
+            let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+            console.log(indd);
+            let tab = tac.find((idd)=> idd.index == indd )
+            infotache.innerHTML = `<h3 class="w-100"> informations tâche</h3>
+                                   <span> Date : ${tab.date} </span>
+                                   <span> Titre : ${tab.titre} </span>
+                                   <span> Catégorie : ${tab.categorie} </span>
+                                   <span> Description : ${tab.description} </span>
+                                   <span> Statut : ${tab.statut} </span>`
+
+        })
+    });
     // btn supprimer
     let supprimer = document.querySelectorAll('.sup');
     supprimer.forEach(button => {
@@ -116,7 +134,8 @@ function affichgraph() {
     let tac = JSON.parse(localStorage.getItem('cles'));
     const findEl = tac.filter((el) => el.index === parseInt(indd))
     console.log(findEl)
-    if (findEl.length > 0) {
+    console.log(indd);
+    if (findEl.length > 0 ) {
         
         tache ={
             index: indd,
@@ -128,6 +147,7 @@ function affichgraph() {
         }
         tac.splice(tac.indexOf(findEl),1,tache)
         localStorage.setItem('cles',JSON.stringify(tac))
+
         if(inputstatut.value !==''){
         affichgraph()
 
@@ -145,7 +165,9 @@ function affichgraph() {
               }, 3000);
         
         chart()
+        indd = 0;
     }
+    
           return
     }
     
