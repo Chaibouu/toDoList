@@ -175,9 +175,14 @@ input[type=date]:invalid::-webkit-datetime-edit {
     background-color: rgb(0, 255, 166);
 }
 .infotache{
+    min-width:500px;
+    position:absolute;
     text-align: center;
     border-radius: 10px;
     border: 1px solid rgba(128, 128, 128, 0.245);
+    top: 50%;
+    z-index:10;
+    background:white;
 }
 .infotache>h3{
     text-align: center;

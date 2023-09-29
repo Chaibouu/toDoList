@@ -83,7 +83,8 @@ const insertline = ()=> {
                                              <span>: ${tab.description} </span>
                                              <span>: ${tab.statut} </span>
                                         </div>
-                                   </div>`
+                                   </div>
+                                   <a href="" class="sortie"></a>`
 
         })
     });
