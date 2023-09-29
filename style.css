@@ -187,3 +187,6 @@ input[type=date]:invalid::-webkit-datetime-edit {
     color: #fff;
     padding: 35px auto;
 }
+.inf{
+    color:#609DA0;
+}

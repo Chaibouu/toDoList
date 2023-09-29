@@ -68,11 +68,22 @@ const insertline = ()=> {
             console.log(indd);
             let tab = tac.find((idd)=> idd.index == indd )
             infotache.innerHTML = `<h3 class="w-100"> informations tâche</h3>
-                                   <span> Date : ${tab.date} </span>
-                                   <span> Titre : ${tab.titre} </span>
-                                   <span> Catégorie : ${tab.categorie} </span>
-                                   <span> Description : ${tab.description} </span>
-                                   <span> Statut : ${tab.statut} </span>`
+                                   <div class="d-flex mx-4 my-2">
+                                        <div class="d-flex flex-column align-items-start me-2">
+                                             <span class="inf">Date </span>
+                                             <span class="inf">Titre </span>
+                                             <span class="inf">Catégorie </span> 
+                                             <span class="inf">Description </span> 
+                                             <span class="inf">Statut </span> 
+                                        </div>
+                                        <div class="d-flex flex-column align-items-start">
+                                             <span> : ${tab.date} </span>
+                                             <span>: ${tab.titre} </span>
+                                             <span>: ${tab.categorie} </span>
+                                             <span>: ${tab.description} </span>
+                                             <span>: ${tab.statut} </span>
+                                        </div>
+                                   </div>`
 
         })
     });
