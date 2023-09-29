@@ -8,6 +8,7 @@ let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
 let notification = document.querySelector('.notification');
 let infotache = document.querySelector('.infotache');
+
 let terminer = 0
 let nouveau = 0
 let encours = 0
