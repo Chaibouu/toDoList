@@ -75,15 +75,15 @@ const insertline = ()=> {
                                              <span class="inf">Date </span>
                                              <span class="inf">Titre </span>
                                              <span class="inf">Catégorie </span> 
-                                             <span class="inf">Description </span> 
                                              <span class="inf">Statut </span> 
+                                             <span class="inf">Description </span> 
                                         </div>
                                         <div class="d-flex flex-column align-items-start">
                                              <span> : ${tab.date} </span>
                                              <span>: ${tab.titre} </span>
                                              <span>: ${tab.categorie} </span>
-                                             <span>: ${tab.description} </span>
                                              <span>: ${tab.statut} </span>
+                                             <span>: ${tab.description} </span>
                                         </div>
                                    </div>`
             let sortie = document.querySelector('.sortie');
