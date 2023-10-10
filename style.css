@@ -102,6 +102,16 @@ input[type=date]:invalid::-webkit-datetime-edit {
     width:75%;
     margin:10px;
 }
+.btnMisajour{
+    color:white;
+    background: #03FFCC;
+    border: 1px solid rgba(128, 128, 128, 0.409);
+    border-radius: 5px;
+    padding: 5px 10px;
+    width:75%;
+    margin:10px;
+    display: none;
+}
 .containertache{
     border-left: 1px solid #609DA0;
 }

@@ -4,6 +4,7 @@ let inputdate = document.querySelector('#inputdate');
 let inputdescription = document.querySelector('#inputdescription');
 let inputstatut = document.querySelector('#inputstatut');
 let btnajouter = document.querySelector('.btnajouter');
+let btnMisajour = document.querySelector('.btnMisajour');
 let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
 let notification = document.querySelector('.notification');
@@ -117,6 +118,7 @@ const insertline = ()=> {
     // btn editer
     let editer = document.querySelectorAll('.edit');
     editer.forEach(button => {
+        btnMisajour.style.display = "block"
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
              indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
