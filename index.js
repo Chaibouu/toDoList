@@ -15,12 +15,20 @@ let encours = 0
 let indd= 0;
 
 
-
 // initialisation du tableau
 if(!localStorage.getItem('cles')){
     localStorage.setItem('cles',JSON.stringify([]))
 }
 let tach = JSON.parse(localStorage.getItem('cles'));
+
+// function update Id
+const upId=(tach)=>{
+    let array=tach;
+    array.forEach((el,i)=>{
+        el.index = i+1
+    })
+    return array;
+}
 
 
 let tache ={
@@ -99,6 +107,7 @@ const insertline = ()=> {
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             let tab = tac.filter((idd)=> idd.index != indd )
             tac = tab;
+            upId(tac)
             localStorage.setItem('cles',JSON.stringify(tac));
             insertline();
             affichgraph()
@@ -111,8 +120,8 @@ const insertline = ()=> {
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
              indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
-             let asup = e.target.parentElement.parentElement.parentElement;
-             asup.remove();
+            //  let asup = e.target.parentElement.parentElement.parentElement;
+            //  asup.remove();
             console.log(indd)
             let tab = tac.find((idd)=> idd.index == indd )
             console.log(tab)
@@ -163,6 +172,7 @@ function affichgraph() {
             statut: inputstatut.value,
         }
         tac.splice(tac.indexOf(findEl),1,tache)
+        upId(tac)
         localStorage.setItem('cles',JSON.stringify(tac))
 
         if(inputstatut.value !==''){
@@ -198,6 +208,7 @@ function affichgraph() {
     }
    
     tach.push(tache);
+    upId(tac)
     updateTach()
     if(inputstatut.value !==''){
         affichgraph()
@@ -211,7 +222,7 @@ function affichgraph() {
     inputstatut.value        = "";
 
     insertline();
-
+    
     notification.style.display = 'block'
         setTimeout(() => {
             notification.style.display = 'none'
