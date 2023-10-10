@@ -30,7 +30,7 @@ let tach = JSON.parse(localStorage.getItem('cles'));
 }
 
 
-// function update Id
+// function update Id mettre à jour l'Id
 const upId=(tach)=>{
     let array=tach;
     array.forEach((el,i)=>{
@@ -38,7 +38,6 @@ const upId=(tach)=>{
     })
     return array;
 }
-
 
 let tache ={
     index: 0,
@@ -83,7 +82,6 @@ const insertline = ()=> {
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
-            console.log(indd);
             let tab = tac.find((idd)=> idd.index == indd )
             infotache.style.visibility = 'visible';
             infotache.innerHTML = `<h3 class="w-100"> informations tâche</h3>
@@ -114,32 +112,36 @@ const insertline = ()=> {
     supprimer.forEach(button => {
         button.addEventListener('click',(e)=>{
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
-            console.log(indd);
             let tab = datas.filter((idd)=> idd.index != indd )
-            console.log(tab);
-            tach = tab;
             upId(tab)
             localStorage.setItem('cles',JSON.stringify(tab));
             insertline();
             affichgraph()
             chart()
+            // afficher la notification remplir les champs
+            notification.style.display = 'block'
+            console.log(notification.firstElementChild);
+            notification.firstElementChild.style.backgroundColor ="red"
+            notification.firstElementChild.textContent = "Tâche Supprimer"
+            notification.lastElementChild.textContent = "Votre tâche à été supprimer avec succès"
+            setTimeout(() => {
+                notification.style.display = 'none'
+            }, 3000);
         })
     });
     // btn editer
     let editer = document.querySelectorAll('.edit');
     editer.forEach(button => {
-        
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
             btnMisajour.style.display = "block";
             btnajouter.style.display = "none";
             titre.style.backgroundColor ="#03FFCC"
+
              indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             //  let asup = e.target.parentElement.parentElement.parentElement;
             //  asup.remove();
-            console.log(indd)
             let tab = tac.find((idd)=> idd.index == indd )
-            console.log(tab)
             inputdate.value        = tab.date;
             inputtitre.value         = tab.titre;
             inputcategorie.value     = tab.categorie;
@@ -155,6 +157,7 @@ const insertline = ()=> {
 }
 insertline();
 
+// fonction pour envoyer les données du graphique
 function affichgraph() {
     let gra = JSON.parse(localStorage.getItem('cles'));
     terminer = 0
@@ -170,6 +173,7 @@ function affichgraph() {
         }
     });
 }
+
 // button mis à jour de l'édition d'une tache
 btnMisajour.addEventListener('click', () => {
     // let tac = JSON.parse(localStorage.getItem('cles'));
@@ -193,18 +197,11 @@ btnMisajour.addEventListener('click', () => {
     //     if(inputstatut.value !==''){
     //     affichgraph()
 
-    //     inputdate.value          = "";
-    //     inputtitre.value         = "";
-    //     inputcategorie.value     = "";
-    //     inputdescription.value   = "";
-    //     inputstatut.value        = "";
+
     
     //     insertline();
     
-    //     notification.style.display = 'block'
-    //         setTimeout(() => {
-    //             notification.style.display = 'none'
-    //           }, 3000);
+    
         
     //     chart()
     //     indd = 0;
@@ -213,7 +210,21 @@ btnMisajour.addEventListener('click', () => {
     //       return
     // }
 
+    // afficher la notification modification effectuer avec succès
+    notification.style.display = 'block'
+    console.log(notification.firstElementChild);
+    notification.firstElementChild.textContent = "Modification"
+    notification.lastElementChild.textContent = "Modification éffectuer avec succès"
+    setTimeout(() => {
+        notification.style.display = 'none'
+      }, 3000);
 
+    // vide les input après modification
+    inputdate.value          = "";
+    inputtitre.value         = "";
+    inputcategorie.value     = "";
+    inputdescription.value   = "";
+    inputstatut.value        = "";
 
     // remettre les paramètres par default
     btnMisajour.style.display = "none";
@@ -223,38 +234,50 @@ btnMisajour.addEventListener('click', () => {
 
 // button ajouter une tâche
  btnajouter.addEventListener('click',()=>{
-    let ajoutertache = JSON.parse(localStorage.getItem('cles'));
-    tache ={
-        index: ajoutertache.length? ajoutertache.length + 1: 1,
-        date: inputdate.value,
-        titre: inputtitre.value,
-        categorie: inputcategorie.value,
-        description: inputdescription.value,
-        statut: inputstatut.value,
-    }
+    if (inputtitre.value!='' && inputstatut.value!='') {
+        let ajoutertache = JSON.parse(localStorage.getItem('cles'));
+         tache ={
+            index: ajoutertache.length? ajoutertache.length + 1: 1,
+            date: inputdate.value,
+            titre: inputtitre.value,
+            categorie: inputcategorie.value,
+            description: inputdescription.value,
+            statut: inputstatut.value,
+        }
    
-    ajoutertache.push(tache);
-    localStorage.setItem('cles',JSON.stringify(ajoutertache));
+        ajoutertache.push(tache);
+        localStorage.setItem('cles',JSON.stringify(ajoutertache));
 
-    if(inputstatut.value !==''){
-        affichgraph()
-    }
-
-  
-    inputdate.value          = "";
-    inputtitre.value         = "";
-    inputcategorie.value     = "";
-    inputdescription.value   = "";
-    inputstatut.value        = "";
-
-    insertline();
-    
-    notification.style.display = 'block'
+        if(inputstatut.value !==''){
+            affichgraph()
+        }
+        // remettre les input vide
+        inputdate.value          = "";
+        inputtitre.value         = "";
+        inputcategorie.value     = "";
+        inputdescription.value   = "";
+        inputstatut.value        = "";
+        // inserer les linge dans le DOM
+        insertline();
+        // afficher la notification d'ajout
+        notification.style.display = 'block'
         setTimeout(() => {
             notification.style.display = 'none'
           }, 3000);
-    
-    chart()
+          
+        chart()
+    }
+    else{
+        // afficher la notification remplir les champs
+        notification.style.display = 'block'
+        console.log(notification.firstElementChild);
+        notification.firstElementChild.style.backgroundColor ="red"
+        notification.firstElementChild.textContent = "Invalid"
+        notification.lastElementChild.textContent = "Veuillez remplir les champs"
+        setTimeout(() => {
+            notification.style.display = 'none'
+          }, 3000);
+    }
  })
 
 
@@ -269,7 +292,7 @@ if(myChart){
  myChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: ['terminer', 'nouveau', 'encours'],
+        labels: ['Terminer', 'Nouveau', 'Encours'],
       datasets: [{
         data: [terminer, nouveau, encours],
         backgroundColor:['gray', 'blue', 'green'],
