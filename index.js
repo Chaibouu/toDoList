@@ -9,6 +9,7 @@ let tbody = document.querySelector('#tbody');
 let containerdescription = document.querySelector('.containerdescription');
 let notification = document.querySelector('.notification');
 let infotache = document.querySelector('.infotache');
+let titre = document.querySelector('.titre');
 
 let terminer = 0
 let nouveau = 0
@@ -118,9 +119,12 @@ const insertline = ()=> {
     // btn editer
     let editer = document.querySelectorAll('.edit');
     editer.forEach(button => {
-        btnMisajour.style.display = "block"
+        
         let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
+            btnMisajour.style.display = "block";
+            btnajouter.style.display = "none";
+            titre.style.backgroundColor ="#03FFCC"
              indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             //  let asup = e.target.parentElement.parentElement.parentElement;
             //  asup.remove();
