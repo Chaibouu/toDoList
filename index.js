@@ -23,6 +23,13 @@ if(!localStorage.getItem('cles')){
 }
 let tach = JSON.parse(localStorage.getItem('cles'));
 
+ // function mettre a jour localstorage
+ function updateTach() {
+    
+    localStorage.setItem('cles',JSON.stringify(tach))
+}
+
+
 // function update Id
 const upId=(tach)=>{
     let array=tach;
@@ -103,14 +110,16 @@ const insertline = ()=> {
     });
     // btn supprimer
     let supprimer = document.querySelectorAll('.sup');
+    let datas = JSON.parse(localStorage.getItem('cles'));
     supprimer.forEach(button => {
-        let tac = JSON.parse(localStorage.getItem('cles'));
         button.addEventListener('click',(e)=>{
             let indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
-            let tab = tac.filter((idd)=> idd.index != indd )
-            tac = tab;
-            upId(tac)
-            localStorage.setItem('cles',JSON.stringify(tac));
+            console.log(indd);
+            let tab = datas.filter((idd)=> idd.index != indd )
+            console.log(tab);
+            tach = tab;
+            upId(tab)
+            localStorage.setItem('cles',JSON.stringify(tab));
             insertline();
             affichgraph()
             chart()
@@ -147,10 +156,11 @@ const insertline = ()=> {
 insertline();
 
 function affichgraph() {
+    let gra = JSON.parse(localStorage.getItem('cles'));
     terminer = 0
     nouveau = 0
     encours = 0
-    tach.forEach(element => {
+    gra.forEach(element => {
         if (element.statut==="Terminé") {
             terminer++ ;
         }else  if (element.statut==="Nouveau") {
@@ -160,52 +170,62 @@ function affichgraph() {
         }
     });
 }
+// button mis à jour de l'édition d'une tache
+btnMisajour.addEventListener('click', () => {
+    // let tac = JSON.parse(localStorage.getItem('cles'));
+    // const findEl = tac.filter((el) => el.index === parseInt(indd));
+    // console.log(findEl)
+    // console.log(indd);
+    // if (findEl.length > 0 ) {
+        
+    //     tache ={
+    //         index: indd,
+    //         date: inputdate.value,
+    //         titre: inputtitre.value,
+    //         categorie: inputcategorie.value,
+    //         description: inputdescription.value,
+    //         statut: inputstatut.value,
+    //     }
+    //     tac.splice(tac.indexOf(findEl),1,tache)
+    //     upId(tac)
+    //     localStorage.setItem('cles',JSON.stringify(tac))
+
+    //     if(inputstatut.value !==''){
+    //     affichgraph()
+
+    //     inputdate.value          = "";
+    //     inputtitre.value         = "";
+    //     inputcategorie.value     = "";
+    //     inputdescription.value   = "";
+    //     inputstatut.value        = "";
+    
+    //     insertline();
+    
+    //     notification.style.display = 'block'
+    //         setTimeout(() => {
+    //             notification.style.display = 'none'
+    //           }, 3000);
+        
+    //     chart()
+    //     indd = 0;
+    // }
+    
+    //       return
+    // }
 
 
+
+    // remettre les paramètres par default
+    btnMisajour.style.display = "none";
+    btnajouter.style.display = "block";
+    titre.style.backgroundColor ="#609DA0";
+})
+
+// button ajouter une tâche
  btnajouter.addEventListener('click',()=>{
-    let tac = JSON.parse(localStorage.getItem('cles'));
-    const findEl = tac.filter((el) => el.index === parseInt(indd))
-    console.log(findEl)
-    console.log(indd);
-    if (findEl.length > 0 ) {
-        
-        tache ={
-            index: indd,
-            date: inputdate.value,
-            titre: inputtitre.value,
-            categorie: inputcategorie.value,
-            description: inputdescription.value,
-            statut: inputstatut.value,
-        }
-        tac.splice(tac.indexOf(findEl),1,tache)
-        upId(tac)
-        localStorage.setItem('cles',JSON.stringify(tac))
-
-        if(inputstatut.value !==''){
-        affichgraph()
-
-        inputdate.value          = "";
-        inputtitre.value         = "";
-        inputcategorie.value     = "";
-        inputdescription.value   = "";
-        inputstatut.value        = "";
-    
-        insertline();
-    
-        notification.style.display = 'block'
-            setTimeout(() => {
-                notification.style.display = 'none'
-              }, 3000);
-        
-        chart()
-        indd = 0;
-    }
-    
-          return
-    }
-    
+    let ajoutertache = JSON.parse(localStorage.getItem('cles'));
     tache ={
-        index: tach.length? tach.length + 1: 1,
+        index: ajoutertache.length? ajoutertache.length + 1: 1,
         date: inputdate.value,
         titre: inputtitre.value,
         categorie: inputcategorie.value,
@@ -213,9 +233,9 @@ function affichgraph() {
         statut: inputstatut.value,
     }
    
-    tach.push(tache);
-    upId(tac)
-    updateTach()
+    ajoutertache.push(tache);
+    localStorage.setItem('cles',JSON.stringify(ajoutertache));
+
     if(inputstatut.value !==''){
         affichgraph()
     }
@@ -264,7 +284,5 @@ chart()
 // ================================================
 
 
- // function mettre a jour localstorage
-function updateTach() {
-    localStorage.setItem('cles',JSON.stringify(tach))
-}
+
+updateTach()
