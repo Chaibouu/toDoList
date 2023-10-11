@@ -29,7 +29,6 @@ let tach = JSON.parse(localStorage.getItem('cles'));
     localStorage.setItem('cles',JSON.stringify(tach))
 }
 
-
 // function update Id mettre à jour l'Id
 const upId=(tach)=>{
     let array=tach;
@@ -50,9 +49,9 @@ let tache ={
 
 
 const insertline = ()=> {
-    let tach = JSON.parse(localStorage.getItem('cles'));
+    let ta = JSON.parse(localStorage.getItem('cles'));
     tbody.innerHTML=''
-    tach.forEach(element => {
+    ta.forEach(element => {
         tbody.innerHTML += `<tr class="affichedescrip">
                           <th scope="row">${element.index}</th>
                           <td>${element.date}</td>
@@ -67,14 +66,24 @@ const insertline = ()=> {
     });
 
     // afficher les description de chaque tâche
-    let affichedescrip = document.querySelectorAll('.affichedescrip');
-    affichedescrip.forEach(element => {
-       element.addEventListener('click',()=>{
+    
+    const afdescrip = (stockdescrip)=>{
+        let affichedescrip = document.querySelectorAll('.affichedescrip');
+        affichedescrip.forEach(element => {
+        element.addEventListener('click',()=>{
         let ind =element.querySelector('th').textContent;
-        let desc = tach.find((id)=> id.index==ind);
-        containerdescription.textContent = desc.description;
+        console.log(ind);
+        let desc = stockdescrip.find((id)=> id.index==ind);
+        if (desc) {
+            containerdescription.textContent = desc.description;
+        }
+        else{
+            containerdescription.textContent = '';
+        }
        })
     });
+    }
+    afdescrip(ta)
 
     // btn views
     let views = document.querySelectorAll('.views');
@@ -118,6 +127,8 @@ const insertline = ()=> {
             insertline();
             affichgraph()
             chart()
+            // vider la description
+            
             // afficher la notification remplir les champs
             notification.style.display = 'block'
             notification.firstElementChild.style.backgroundColor ="red"
@@ -248,6 +259,9 @@ btnMisajour.addEventListener('click', () => {
         insertline();
         // afficher la notification d'ajout
         notification.style.display = 'block'
+        notification.firstElementChild.style.backgroundColor ="#609DA0"
+        notification.firstElementChild.textContent = "Ajout de la tâche"
+        notification.lastElementChild.textContent = "Tâche enregistrer avec succès"
         setTimeout(() => {
             notification.style.display = 'none'
           }, 3000);
