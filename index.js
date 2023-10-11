@@ -15,6 +15,7 @@ let terminer = 0
 let nouveau = 0
 let encours = 0
 let indd= 0;
+let idEdit= 0;
 
 
 // initialisation du tableau
@@ -25,7 +26,6 @@ let tach = JSON.parse(localStorage.getItem('cles'));
 
  // function mettre a jour localstorage
  function updateTach() {
-    
     localStorage.setItem('cles',JSON.stringify(tach))
 }
 
@@ -120,7 +120,6 @@ const insertline = ()=> {
             chart()
             // afficher la notification remplir les champs
             notification.style.display = 'block'
-            console.log(notification.firstElementChild);
             notification.firstElementChild.style.backgroundColor ="red"
             notification.firstElementChild.textContent = "Tâche Supprimer"
             notification.lastElementChild.textContent = "Votre tâche à été supprimer avec succès"
@@ -131,18 +130,19 @@ const insertline = ()=> {
     });
     // btn editer
     let editer = document.querySelectorAll('.edit');
+    let tacc = JSON.parse(localStorage.getItem('cles'));
     editer.forEach(button => {
-        let tac = JSON.parse(localStorage.getItem('cles'));
+        
         button.addEventListener('click',(e)=>{
             btnMisajour.style.display = "block";
             btnajouter.style.display = "none";
             titre.style.backgroundColor ="#03FFCC"
 
-             indd = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
+             idEdit = e.target.parentElement.parentElement.parentElement.querySelector('th').textContent;
             //  let asup = e.target.parentElement.parentElement.parentElement;
             //  asup.remove();
-            let tab = tac.find((idd)=> idd.index == indd )
-            inputdate.value        = tab.date;
+            let tab = tacc.find((idd)=> idd.index == idEdit );
+            inputdate.value          = tab.date;
             inputtitre.value         = tab.titre;
             inputcategorie.value     = tab.categorie;
             inputdescription.value   = tab.description;
@@ -176,43 +176,30 @@ function affichgraph() {
 
 // button mis à jour de l'édition d'une tache
 btnMisajour.addEventListener('click', () => {
-    // let tac = JSON.parse(localStorage.getItem('cles'));
-    // const findEl = tac.filter((el) => el.index === parseInt(indd));
-    // console.log(findEl)
-    // console.log(indd);
-    // if (findEl.length > 0 ) {
-        
-    //     tache ={
-    //         index: indd,
-    //         date: inputdate.value,
-    //         titre: inputtitre.value,
-    //         categorie: inputcategorie.value,
-    //         description: inputdescription.value,
-    //         statut: inputstatut.value,
-    //     }
-    //     tac.splice(tac.indexOf(findEl),1,tache)
-    //     upId(tac)
-    //     localStorage.setItem('cles',JSON.stringify(tac))
+    let miseajour = JSON.parse(localStorage.getItem('cles'));
+    let findEl = miseajour.findIndex((el) => el.index === parseInt(idEdit));
+    console.log(findEl);
 
-    //     if(inputstatut.value !==''){
-    //     affichgraph()
+    console.log(miseajour[findEl]);
+    miseajour[findEl].date = inputdate.value         
+    miseajour[findEl].titre = inputtitre.value     
+    miseajour[findEl].categorie = inputcategorie.value    
+    miseajour[findEl].description = inputdescription.value  
+    miseajour[findEl].statut = inputstatut.value       
 
+    localStorage.setItem('cles',JSON.stringify(miseajour))
 
-    
-    //     insertline();
-    
-    
-        
-    //     chart()
-    //     indd = 0;
-    // }
-    
-    //       return
-    // }
+    if(inputstatut.value !==''){
+        affichgraph()
+    }
+
+    insertline();
+    chart()
+
 
     // afficher la notification modification effectuer avec succès
     notification.style.display = 'block'
-    console.log(notification.firstElementChild);
+    notification.firstElementChild.style.backgroundColor ="#609DA0"
     notification.firstElementChild.textContent = "Modification"
     notification.lastElementChild.textContent = "Modification éffectuer avec succès"
     setTimeout(() => {
