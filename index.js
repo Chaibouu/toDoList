@@ -52,11 +52,11 @@ const insertline = ()=> {
     let ta = JSON.parse(localStorage.getItem('cles'));
     tbody.innerHTML=''
     ta.forEach(element => {
-        tbody.innerHTML += `<tr class="affichedescrip">
-                          <th scope="row">${element.index}</th>
-                          <td>${element.date}</td>
-                          <td >${element.titre}</td>
-                          <td>${element.categorie}</td>
+        tbody.innerHTML += `<tr class="">
+                          <th class="affichedescrip" scope="row">${element.index}</th>
+                          <td class="affichedescrip">${element.date}</td>
+                          <td class="affichedescrip" >${element.titre}</td>
+                          <td class="affichedescrip">${element.categorie}</td>
                           <td>
                             <span class= "views"><i class="bi bi-eye"></i></span>
                             <span class= "edit"><i class="bi bi-pencil-square"></i></span>
@@ -66,19 +66,18 @@ const insertline = ()=> {
     });
 
     // afficher les description de chaque tâche
-    
     const afdescrip = (stockdescrip)=>{
         let affichedescrip = document.querySelectorAll('.affichedescrip');
         affichedescrip.forEach(element => {
         element.addEventListener('click',()=>{
-        let ind =element.querySelector('th').textContent;
-        console.log(ind);
+        let ind =element.parentElement.firstElementChild.textContent;
         let desc = stockdescrip.find((id)=> id.index==ind);
         if (desc) {
             containerdescription.textContent = desc.description;
         }
         else{
             containerdescription.textContent = '';
+            
         }
        })
     });
@@ -128,7 +127,7 @@ const insertline = ()=> {
             affichgraph()
             chart()
             // vider la description
-            
+            containerdescription.textContent = '';
             // afficher la notification remplir les champs
             notification.style.display = 'block'
             notification.firstElementChild.style.backgroundColor ="red"
@@ -160,7 +159,7 @@ const insertline = ()=> {
             inputstatut.value        = tab.statut;
 
             // localStorage.setItem('cles',JSON.stringify(tac[ind]));
-            // insertline();
+            insertline();
             // affichgraph()
             // chart()
         })
@@ -189,9 +188,7 @@ function affichgraph() {
 btnMisajour.addEventListener('click', () => {
     let miseajour = JSON.parse(localStorage.getItem('cles'));
     let findEl = miseajour.findIndex((el) => el.index === parseInt(idEdit));
-    console.log(findEl);
 
-    console.log(miseajour[findEl]);
     miseajour[findEl].date = inputdate.value         
     miseajour[findEl].titre = inputtitre.value     
     miseajour[findEl].categorie = inputcategorie.value    
@@ -206,7 +203,8 @@ btnMisajour.addEventListener('click', () => {
 
     insertline();
     chart()
-
+    // vider la description
+    containerdescription.textContent = '';
 
     // afficher la notification modification effectuer avec succès
     notification.style.display = 'block'
